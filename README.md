@@ -6,9 +6,9 @@ GraphQL API for Courses of Tsinghua University
 
 You can find courses corresponding with certain semesters in [courses](./courses)
 
-|  Semester   |                    Undergraduate                    |                      Graduate                       |
-| :---------: | :-------------------------------------------------: | :-------------------------------------------------: |
-| 2018-2019-2 | <ul><li>[x] 一级课程</li><li>[x] 二级课程</li></ul> | <ul><li>[ ] 一级课程</li><li>[ ] 二级课程</li></ul> |
+|  Semester   |                        Undergraduate                        |                          Graduate                           |
+| :---------: | :---------------------------------------------------------: | :---------------------------------------------------------: |
+| 2018-2019-2 | <ul><li>[x] 一级选课课程</li><li>[x] 二级选课课程</li></ul> | <ul><li>[ ] 一级选课课程</li><li>[ ] 二级选课课程</li></ul> |
 
 ## Development
 

@@ -64,26 +64,26 @@ import * as readline from "readline";
   /**
    * Get coursesUrls
    */
-  const firstHrefHandle = await treeFrame!.evaluateHandle(
+  const primaryHrefHandle = await treeFrame!.evaluateHandle(
     document => document.querySelector('a[href*="一级课开课信息"]').href,
     documentHandle
   );
-  const firstClassCoursesUrl = (await firstHrefHandle.jsonValue()) as string;
-  const secondHrefHandle = await treeFrame!.evaluateHandle(
+  const primaryClassCoursesUrl = (await primaryHrefHandle.jsonValue()) as string;
+  const secondaryHrefHandle = await treeFrame!.evaluateHandle(
     document => document.querySelector('a[href*="二级课开课信息"]').href,
     documentHandle
   );
-  const secondClassCoursesUrl = (await secondHrefHandle.jsonValue()) as string;
+  const secondaryClassCoursesUrl = (await secondaryHrefHandle.jsonValue()) as string;
 
   /**
-   * Get first class courses
+   * Get primary class courses
    */
-  await getCourses(page, "first", firstClassCoursesUrl);
+  await getCourses(page, "primary", primaryClassCoursesUrl);
 
   /**
-   * Get second class courses
+   * Get secondary class courses
    */
-  await getCourses(page, "second", secondClassCoursesUrl);
+  await getCourses(page, "secondary", secondaryClassCoursesUrl);
 
   /**
    * Cleanup
@@ -93,7 +93,7 @@ import * as readline from "readline";
 
 async function getCourses(
   page: puppeteer.Page,
-  type: "first" | "second",
+  type: "primary" | "secondary",
   coursesUrl: string
 ) {
   await page.goto(coursesUrl, { waitUntil: "networkidle2" });
@@ -167,7 +167,7 @@ async function getCourses(
 
 async function getTableInfo(
   page: puppeteer.Page,
-  type: "first" | "second"
+  type: "primary" | "secondary"
 ): Promise<any> {
   return page.$eval(
     "table",
@@ -186,10 +186,10 @@ async function getTableInfo(
         const course = {} as any;
 
         for (let c = 0, m = table.rows[r].cells.length; c < m; c++) {
-          if (t === "first" && c === 13) {
+          if (t === "primary" && c === 13) {
             continue;
           }
-          if (t === "second" && (c === 0 || c === 11)) {
+          if (t === "secondary" && (c === 0 || c === 11)) {
             continue;
           }
 
