@@ -1,0 +1,21 @@
+overwrite: true
+schema: schemas/schema.ts
+require:
+  - ts-node/register
+generates:
+  types/common.ts:
+    plugins:
+      - add: // tslint:disable
+      - typescript-common
+      - typescript-server
+  types/resolvers.ts:
+    plugins:
+      - add: // tslint:disable
+      - typescript-common
+      - typescript-server
+      - typescript-resolvers
+  types/mongodb.ts:
+    plugins:
+      - add: // tslint:disable
+      - add: import { Maybe, PrimaryCourse, SecondaryCourse } from "./common"
+      - typescript-mongodb

@@ -1,38 +1,16 @@
 import { ApolloServer } from "apollo-server-express";
 import * as dotenv from "dotenv";
 import * as express from "express";
-import { DIRECTIVES } from "graphql-codegen-typescript-mongodb";
 import { getDB } from "./db";
-import courseResolvers from "./resolvers/course";
-import mutationResolvers from "./resolvers/mutation";
-import queryResolvers from "./resolvers/query";
-import courseType from "./schemas/course";
-import mutationType from "./schemas/mutation";
-import queryType from "./schemas/query";
-import teacherType from "./schemas/teacher";
+import schema from "./schemas/schema";
 
 (async () => {
   dotenv.config();
 
   const db = await getDB();
 
-  const typeDefs = [
-    DIRECTIVES,
-    teacherType,
-    courseType,
-    queryType,
-    mutationType
-  ];
-
-  const resolvers: any = {
-    ...courseResolvers,
-    ...queryResolvers,
-    ...mutationResolvers
-  };
-
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
     context: {
       db
     },
