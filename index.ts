@@ -11,12 +11,15 @@ import schema from "./schemas/schema";
 
   const server = new ApolloServer({
     schema,
-    context: {
-      db
+    context: ({ req }: any) => {
+      const token = req.headers.authorization || "";
+      return { canMutate: token === process.env.ENGINE_API_KEY, db };
     },
     engine: {
       apiKey: process.env.ENGINE_API_KEY
-    }
+    },
+    introspection: true,
+    playground: true
   });
   const app = express();
   server.applyMiddleware({ app });

@@ -6,6 +6,13 @@ import { MutationResolvers } from "../types/resolvers";
 
 const mutationResolvers: MutationResolvers.Resolvers<Context> = {
   addPrimaryCourses: async (parent, args, context) => {
+    if (!context.canMutate) {
+      return {
+        success: false,
+        message: "Authentication failed"
+      };
+    }
+
     const db = context.db;
     const docs = args.courses.map(course => {
       return { ...course, type: CourseType.Primary };
@@ -29,6 +36,13 @@ const mutationResolvers: MutationResolvers.Resolvers<Context> = {
     }
   },
   addSecondaryCourses: async (parent, args, context) => {
+    if (!context.canMutate) {
+      return {
+        success: false,
+        message: "Authentication failed"
+      };
+    }
+
     const db = context.db;
     const docs = args.courses.map(course => {
       return { ...course, type: CourseType.Secondary };
@@ -52,6 +66,13 @@ const mutationResolvers: MutationResolvers.Resolvers<Context> = {
     }
   },
   removeCourses: async (parent, args, context) => {
+    if (!context.canMutate) {
+      return {
+        success: false,
+        message: "Authentication failed"
+      };
+    }
+
     const db = context.db;
     const ids = args.ids.map(id => new ObjectID(id));
     const r = await db.collection("courses").deleteMany({ _id: { $in: ids } });
@@ -62,6 +83,13 @@ const mutationResolvers: MutationResolvers.Resolvers<Context> = {
     };
   },
   updatePrimaryCourse: async (parent, args, context) => {
+    if (!context.canMutate) {
+      return {
+        success: false,
+        message: "Authentication failed"
+      };
+    }
+
     const db = context.db;
     const update = args.update.teacher
       ? { ...args.update, teacher: { name: args.update.teacher } }
@@ -84,6 +112,13 @@ const mutationResolvers: MutationResolvers.Resolvers<Context> = {
     }
   },
   updateSecondaryCourse: async (parent, args, context) => {
+    if (!context.canMutate) {
+      return {
+        success: false,
+        message: "Authentication failed"
+      };
+    }
+
     const db = context.db;
     const update = args.update.teacher
       ? { ...args.update, teacher: { name: args.update.teacher } }
