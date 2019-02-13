@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon",
     "crawl": "ts-node scripts/crawler.ts && prettier --write courses/**/*",
+    "upload": "ts-node scripts/upload.ts",
     "typecheck": "tsc --noEmit",
     "generate": "gql-gen --config codegen.yml",
     "build": "tsc --outDir build",
@@ -38,6 +39,7 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "graphql": "^14.1.1",
+    "graphql-request": "^1.8.2",
     "mongodb": "^3.1.13",
     "progress": "^2.0.3",
     "puppeteer": "^1.12.2"
