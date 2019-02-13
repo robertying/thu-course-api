@@ -4,3 +4,4 @@ build
 .DS_Store
 .env
 types/schema.ts
+scripts/package-lock.json

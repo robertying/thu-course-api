@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@types/progress": "^2.0.3",
+    "@types/puppeteer": "^1.12.1"
+  },
+  "dependencies": {
+    "graphql-request": "^1.8.2",
+    "progress": "^2.0.3",
+    "puppeteer": "^1.12.2"
+  }
+}
