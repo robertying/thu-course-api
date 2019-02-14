@@ -7,7 +7,7 @@ const queryType = gql`
   type Query {
     "返回满足条件的课程数组"
     courses(
-      type: CourseType
+      type: CourseType!
       No: String
       index: String
       name: String
