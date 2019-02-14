@@ -1,7 +1,7 @@
 // tslint:disable: no-console
 
 import * as fs from "fs";
-import { request } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
 import * as path from "path";
 
 const url = "https://api.robertying.io/graphql";
@@ -117,13 +117,19 @@ mutation ($courses: [AddPrimaryCourseInput!]!) {
   }
 `;
 
+  const client = new GraphQLClient(url, {
+    headers: {
+      authorization: process.env.ENGINE_API_KEY || ""
+    }
+  });
+
   const chunk = 100;
   for (let i = 0; i < primaryUploadCourses.length; i += chunk) {
     const variables = {
       courses: primaryUploadCourses.slice(i, i + chunk)
     };
 
-    const data = await request(url, mutation, variables);
+    const data = await client.request(mutation, variables);
     console.log(JSON.stringify(data, undefined, 2));
   }
 }
@@ -137,13 +143,19 @@ mutation ($courses: [AddSecondaryCourseInput!]!) {
   }
 `;
 
+  const client = new GraphQLClient(url, {
+    headers: {
+      authorization: process.env.ENGINE_API_KEY || ""
+    }
+  });
+
   const chunk = 100;
   for (let i = 0; i < secondaryUploadCourses.length; i += chunk) {
     const variables = {
       courses: secondaryUploadCourses.slice(i, i + chunk)
     };
 
-    const data = await request(url, mutation, variables);
+    const data = await client.request(mutation, variables);
     console.log(JSON.stringify(data, undefined, 2));
   }
 }
