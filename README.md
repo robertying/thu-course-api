@@ -4,7 +4,7 @@
 
 GraphQL API for Courses of Tsinghua University
 
-## Static catalog
+## Static Catalog
 
 You can find courses corresponding with certain semesters in [courses](./courses)
 
@@ -66,6 +66,48 @@ Besides using [graphql-request](https://github.com/prisma/graphql-request) for s
 
 See [Learn GraphQL](https://graphql.org/learn/) for more info on GraphQL
 
+## Key Pairs
+
+For primary courses:
+
+```js
+const primaryKeys = {
+  开课院系: "department",
+  课程号: "No",
+  课序号: "index",
+  课程名: "name",
+  学分: "credit",
+  主讲教师: "teacher",
+  本科生课容量: "undergraduateCapacity",
+  研究生课容量: "graduateCapacity",
+  上课时间: "classTime",
+  选课文字说明: "registrationDescription",
+  课程特色: "features",
+  年级: "grade",
+  是否二级选课: "secondaryRequired",
+  重修是否占容量: "standaloneRehearsal",
+  是否选课时限制: "registrationRestriction",
+  本科文化素质课组: "culturalQualityCategory"
+};
+```
+
+For secondary courses:
+
+```js
+const secondaryKeys = {
+  课程号: "No",
+  课序号: "index",
+  课程名: "name",
+  主讲教师: "teacher",
+  开课院系: "department",
+  二级课序号: "secondaryIndex",
+  排课模式: "arrangementMode",
+  选课模式: "registrationMode",
+  项目组数: "projectCount",
+  必修项目数: "compulsoryProjectCount"
+};
+```
+
 ## Development
 
 Run
@@ -77,7 +119,7 @@ cd scripts && npm install
 
 to install dependencies
 
-### Newer courses
+### New Courses
 
 Run
 
