@@ -2,7 +2,7 @@
 
 import * as mongodb from "mongodb";
 
-const url = "mongodb://localhost:27017";
+const url = `mongodb://${process.env.DATABASE || "localhost"}:27017`;
 export const client = new mongodb.MongoClient(url, { useNewUrlParser: true });
 
 export async function getDB() {
